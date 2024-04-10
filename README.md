@@ -3,6 +3,8 @@
 To build a serverless, progressive web application (PWA) with React using a
 test-driven development (TDD) technique. The application uses the Google
 Calendar API to fetch upcoming events. (From original CareerFoundry project brief)
+## Serverless Function Usage
+Serverless functions (hosted through AWS Lambda) will communicate with the OAuth provider (google OAuth) to allow the user to send credentials. OAuth will then validate the user and grant an access token to the serverless function. The serverless function will then carry out a request to the Google Calendar API requesting and receiving events to be displayed through this meet app to the user.
 ## Features
 ### Filter Events by City
 As a user,
