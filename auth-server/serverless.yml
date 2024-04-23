@@ -1,0 +1,44 @@
+# Uses Serverless
+service: auth-server
+
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-2
+  timeout: 30 # optional, in seconds, default is 6
+  environment:
+    CLIENT_ID: ${file(config.json):CLIENT_ID}
+    CLIENT_SECRET: ${file(config.json):CLIENT_SECRET}
+    CALENDAR_ID: ${file(config.json):CALENDAR_ID}
+
+functions:
+  hello:
+    handler: handler.hello
+
+
+#    Define function environment variables here
+# ‘getAuthURL’ is a function, and is one of the three functions that you’ll be creating
+  getAuthURL: 
+    # Points to handler.js file with getAuthURL method
+    handler: handler.getAuthURL
+    # Specify events that will trigger the ‘getAuthURL’ Lambda function to run
+    events: 
+      - http: 
+          path: api/get-auth-url
+          method: get
+
+  getAccessToken: 
+    handler: handler.getAccessToken
+    events: 
+      - http: 
+          path: api/token/{code}
+          method: get
+
+  getCalendarEvents:
+    handler: handler.getCalendarEvents
+    events:
+      - http: 
+          path: api/get-events/{access_token}
+          method: get
