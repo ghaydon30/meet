@@ -6,7 +6,7 @@ Calendar API to fetch upcoming events. (From original CareerFoundry project brie
 ## Serverless Function Usage
 Serverless functions (hosted through AWS Lambda) will communicate with the OAuth provider (google OAuth) to allow the user to send credentials. OAuth will then validate the user and grant an access token to the serverless function. The serverless function will then carry out a request to the Google Calendar API requesting and receiving events to be displayed through this meet app to the user.
 ## Features
-### Filter Events by City
+### 1. Filter Events by City
 As a user,
 I should be able to filter events by city
 so that I can choose events based on my location.  
@@ -14,7 +14,7 @@ so that I can choose events based on my location.
 - **Given:** The list of events has been loaded and the city / radius is input
 - **When:** The user clicks "filter" button
 - **Then:** The events list will be filtered by city
-### Show/Hide Event Details
+### 2. Show/Hide Event Details
 As a user,
 I should be able to show/hide event details
 so that I can tailor how much info I get at a time.  
@@ -22,7 +22,7 @@ so that I can tailor how much info I get at a time.
 - **Given:** The event is loaded
 - **When:** The user clicks "Show"/"Hide" "Details"
 - **Then:** Event element will be expanded to show event details (or contracted if already showing)
-### Specify Number of Events
+### 3. Specify Number of Events
 As a user,
 I should be able to specify the number of events
 so that I can see the scope of each event from a commitment standpoint.  
@@ -30,7 +30,7 @@ so that I can see the scope of each event from a commitment standpoint.
 - **Given:** The user inputs a specific number of events to display
 - **When:** The user clicks "limit events"
 - **Then:** The event list is limited to the scope the user entered
-### Use the App When Offline
+### 4. Use the App When Offline
 As a user,
 I should be able to use the app when offline
 so that I can plan social events when traveling.  
@@ -38,7 +38,7 @@ so that I can plan social events when traveling.
 - **Given:** A basic amount of data is pre-loaded
 - **When:** A signal is not present
 - **Then:** The user can still view the pre-loaded saved data
-### Add an App Shortcut to the Home Screen
+### 5. Add an App Shortcut to the Home Screen
 As a user,
 I should be able to click a shortcut to the home screen
 so that I can get to the home page easily.  
@@ -46,7 +46,7 @@ so that I can get to the home page easily.
 - **Given:** The user is on a different screen than home
 - **When:** The user clicks the "Home" or app decal
 - **Then:** The user will be taken to the home page
-### Display Charts Visualizing Event Details
+### 6. Display Charts Visualizing Event Details
 As a user,
 I should be able to display charts visualizing event details
 so that I can succinctly see the important points of an event.  
