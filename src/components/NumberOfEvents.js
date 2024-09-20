@@ -1,4 +1,4 @@
-const NumberOfEvents = ({ setNumberOfEvents, setErrorAlert }) => {
+const NumberOfEvents = ({ setCurrentNOE, setErrorAlert }) => {
   const handleInputChanged = (event) => {
     const value = event.target.value;
   
@@ -10,7 +10,7 @@ const NumberOfEvents = ({ setNumberOfEvents, setErrorAlert }) => {
         errorText = ''
     }
   
-    setNumberOfEvents(value);
+    setCurrentNOE(value);
     setErrorAlert(errorText);
   };
 
