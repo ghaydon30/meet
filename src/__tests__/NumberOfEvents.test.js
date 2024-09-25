@@ -28,17 +28,3 @@ describe('<NumberOfEvents /> component', () => {
     expect(input).toHaveValue('10');
   });
 });
-
-// describe('<NumberOfEvents /> integration', () => {
-//   test('number of events rendered matches the number of events inputted by the user', async () => {
-//     let NumberOfEventsComponent;
-//     NumberOfEventsComponent = render(
-//       <NumberOfEvents setCurrentNOE={() => {}} setErrorAlert={() => {}} />
-//     );
-    
-//     const input = NumberOfEventsComponent.queryByRole('textbox');
-//     const user = userEvent.setup();
-//     await user.type(input, '{backspace}{backspace}10');
-//     expect(input).toHaveValue('10');
-//   });
-// });

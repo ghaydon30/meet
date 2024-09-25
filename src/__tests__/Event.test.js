@@ -23,7 +23,8 @@ describe('<EventList /> component', () => {
 
   // Test if there is an element for the event start time
   test('If there is an event element with created key', () => {
-    expect(EventComponent.queryByText(allEvents[0].created)).toBeInTheDocument();
+    const formattedDate = new Date(allEvents[0].created).toUTCString();
+    expect(EventComponent.queryByText(formattedDate)).toBeInTheDocument();
   });
 
   // Test if there is an element for the event's location

@@ -1,31 +1,28 @@
-const NumberOfEvents = ({ setCurrentNOE, setErrorAlert }) => {
+// src/components/NumberOfEvents.js
+
+import { useState } from "react";
+
+const NumberOfEvents = () => {
+
+  const [number, setNumber] = useState(32);
+
   const handleInputChanged = (event) => {
     const value = event.target.value;
-  
-    // Alerts
-    let errorText;
-    if (value <= 0) {
-        errorText = 'The number must be higher than 0.'
-    } else {
-        errorText = ''
-    }
-  
-    setCurrentNOE(value);
-    setErrorAlert(errorText);
-  };
+    setNumber(value);
+  }
 
   return (
-    <div id='number-of-events'>
-        <label htmlFor='number-of-events-input'>Number of Events: </label>
-        <input 
-        type='value'
-        id='number-of-events-input'
-        className='number-of-events-input'
-        defaultValue={32}
+    <div id="number-of-events">
+      <label htmlFor="number-of-events-input">Number of Events: </label>
+      <input
+        type="text"
+        id="number-of-events-input"
+        className="number-of-events-input"
+        value={number}
         onChange={handleInputChanged}
-        />
+      />
     </div>
-);
-};
+  );
+}
 
 export default NumberOfEvents;
