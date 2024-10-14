@@ -14,13 +14,21 @@ const App = () => {
   const [currentCity, setCurrentCity] = useState("See all cities");
 
   const fetchData = async () => {
-    const allEvents = await getEvents();
-    const filteredEvents = currentCity === "See all cities" ?
-      allEvents :
-      allEvents.filter(event => event.location === currentCity)
-    setEvents(filteredEvents.slice(0, currentNOE));
-    setAllLocations(extractLocations(allEvents));
-  }
+    try {
+      console.log('Fetching events...');  // Log that the function is running
+      const allEvents = await getEvents();
+      console.log('Fetched events:', allEvents);  // Log the fetched events
+
+      const filteredEvents = currentCity === "See all cities" ?
+        allEvents :
+        allEvents.filter(event => event.location === currentCity);
+      
+      setEvents(filteredEvents.slice(0, currentNOE));
+      setAllLocations(extractLocations(allEvents));
+    } catch (error) {
+      console.error('Error fetching events:', error);  // Log errors
+    }
+  };
 
   useEffect(() => {
     fetchData();
