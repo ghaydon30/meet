@@ -15,10 +15,7 @@ const App = () => {
 
   const fetchData = async () => {
     try {
-      console.log('Fetching events...');  // Log that the function is running
       const allEvents = await getEvents();
-      console.log('Fetched events:', allEvents);  // Log the fetched events
-
       const filteredEvents = currentCity === "See all cities" ?
         allEvents :
         allEvents.filter(event => event.location === currentCity);
@@ -26,18 +23,21 @@ const App = () => {
       setEvents(filteredEvents.slice(0, currentNOE));
       setAllLocations(extractLocations(allEvents));
     } catch (error) {
-      console.error('Error fetching events:', error);  // Log errors
+      console.error('Error fetching events:', error);
     }
   };
 
   useEffect(() => {
     fetchData();
-  }, [currentCity]);
+  }, [currentCity, currentNOE]);
   
   return (
     <div className="App">
       <CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity} />
-      <NumberOfEvents />
+      <NumberOfEvents 
+        currentNOE={currentNOE}
+        setCurrentNOE={setCurrentNOE}
+      />
       <EventList events={events} />
     </div>
   );

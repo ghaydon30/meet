@@ -5,11 +5,20 @@ import userEvent from '@testing-library/user-event';
 
 describe('<NumberOfEvents /> component', () => {
   let NumberOfEventsComponent;
+  // beforeEach(() => {
+  //   NumberOfEventsComponent = render(
+  //     <NumberOfEvents setCurrentNOE={() => {}} setErrorAlert={() => {}} />
+  //   );
+  // });
   beforeEach(() => {
     NumberOfEventsComponent = render(
-      <NumberOfEvents setCurrentNOE={() => {}} setErrorAlert={() => {}} />
+        <NumberOfEvents
+            currentNOE={32} 
+            setCurrentNOE={() => {}}
+            setErrorAlert={() => {}}
+        />
     );
-  });
+});
 
   test('component contains input textbox', () => {
     const input = NumberOfEventsComponent.queryByRole('textbox');
