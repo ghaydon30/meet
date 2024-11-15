@@ -5,6 +5,12 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
+// import * as atatus from 'atatus-js';
+import * as atatus from 'atatus-spa';
+atatus.config('cb053b57f24c4033951c5b1faefd15ae').install();
+// To check with a notify
+// atatus.notify(new Error('Test Atatus Setup'));
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
