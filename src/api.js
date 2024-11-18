@@ -1,6 +1,7 @@
 // src/api.js
 
 import mockData from './mock-data';
+import NProgress from "nprogress";
 
 /**
  *
@@ -62,32 +63,62 @@ const getToken = async (code) => {
  *
  * This function will fetch the list of all events
  */
+// export const getEvents = async () => {
+//   try {
+//     // Testing commented out this so that localhost uses api data
+//     if (window.location.href.startsWith('http://localhost')) {
+//       return mockData;
+//     }
+
+//     const token = await getAccessToken();
+//     if (token) {
+//     removeQuery();
+//     const url =  'https://68blsyaa5i.execute-api.us-east-2.amazonaws.com/dev/api/get-events' + '/' + token;
+//     const response = await fetch(url);
+
+//       if (!response.ok) {
+//         throw new Error(`Error fetching events: ${response.statusText}`);
+//       }
+
+//       const result = await response.json();
+//       // localStorage.setItem("lastEvents", JSON.stringify(result));
+//       return result;
+//     }
+//   } catch (error) {
+//     console.error('Error fetching events:', error);
+//     return null;
+//   }
+// };
+
 export const getEvents = async () => {
-  try {
-    // Testing commented out this so that localhost uses api data
-    if (window.location.href.startsWith('http://localhost')) {
-      return mockData;
-    }
+  NProgress.start();
+  
+  if (window.location.href.startsWith("http://localhost")) {
+    NProgress.done();
+    return mockData;
+  }
 
-    const token = await getAccessToken();
-    if (token) {
+  if (!navigator.onLine) {
+    const events = localStorage.getItem("lastEvents");
+    NProgress.done();
+    return events ? JSON.parse(events) : [];
+  }
+
+  const token = await getAccessToken();
+
+  if (token) {
     removeQuery();
-    const url =  'https://68blsyaa5i.execute-api.us-east-2.amazonaws.com/dev/api/get-events' + '/' + token;
+    const url =
+      "https://68blsyaa5i.execute-api.us-east-2.amazonaws.com/dev/api/get-events" +
+      "/" +
+      token;
     const response = await fetch(url);
-
-      if (!response.ok) {
-        throw new Error(`Error fetching events: ${response.statusText}`);
-      }
-
-      const result = await response.json();
-      // Previous Code
-      // return result && result.events ? result.events : [];
-      // Example Code
-      return result;
-    }
-  } catch (error) {
-    console.error('Error fetching events:', error);
-    return null;
+    const result = await response.json();
+    if (result) {
+      NProgress.done();
+      localStorage.setItem("lastEvents", JSON.stringify(result.events));
+      return result.events;
+    } else return null;
   }
 };
 
