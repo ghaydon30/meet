@@ -2,12 +2,17 @@ import { useEffect, useState } from 'react';
 import CitySearch from './components/CitySearch';
 import EventList from './components/EventList';
 import NumberOfEvents from './components/NumberOfEvents';
+import CityEventsChart from './components/CityEventsChart';
 import { extractLocations, getEvents } from './api';
 import { InfoAlert, ErrorAlert, WarningAlert } from './components/Alert';
 
 import './App.css';
 
 const App = () => {
+  
+  useEffect(() => {
+    document.title = 'Meet App';
+  }, []);
   
   const [events, setEvents] = useState([]);
   const [currentNOE, setCurrentNOE] = useState(32);
@@ -21,6 +26,8 @@ const App = () => {
     const fetchData = async () => {
       try {
         const allEvents = await getEvents();
+        // Testing
+        console.log('All Events: ', allEvents);
         const filteredEvents = currentCity === "See all cities" ?
         allEvents :
         allEvents.filter(event => event.location === currentCity);
@@ -42,6 +49,10 @@ const App = () => {
   
   return (
     <div className="App">
+      <div>
+        <h1>Meet App</h1>
+        <p>Find Events in Your City</p>
+      </div>
       <div className="alerts-container">
         {infoAlert.length ? <InfoAlert text={infoAlert}/> : null}
         {errorAlert.length ? <ErrorAlert text={errorAlert}/> : null}
@@ -57,6 +68,7 @@ const App = () => {
         setCurrentNOE={setCurrentNOE}
         setErrorAlert={setErrorAlert}
       />
+      <CityEventsChart allLocations={allLocations} events={events} />
       <EventList events={events} />
     </div>
   );
